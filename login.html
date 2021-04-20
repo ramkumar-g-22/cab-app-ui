@@ -4,19 +4,45 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Login</title>
+	<script src="login.js"></script>
 </head>
 
 <body>
 	<h1>Login Page</h1>
-	<form action="" method="POST">
+	<form method="POST">
 		<label for="mobileNumber">Enter Your Mobile Number : </label>
-		<input type="text" name="mobileNumber" id="mobileNumber" required>
+		<input type="text" name="mobileNumber" id="mobileNumber">
 		<br>
 		<label for="password">Enter Your Password : </label>
-		<input type="password" name="password" id="password" required>
+		<input type="password" name="password" id="password">
 		<br>
-		<button>Submit</button>
+		<button id="submit">Submit</button>
 	</form>
+	<script>
+		var mobileNumber = "";
+		var password = "";
+		var isValidMobileNumber = false;
+		var isValidPassword  = false;
+		document.getElementById("mobileNumber").onchange = function () {
+			event.preventDefault();
+			mobileNumber = document.getElementById("mobileNumber").value;
+			isValidMobileNumber = validateMobileNumber(mobileNumber);
+			console.log("Mobile NUmber : ", mobileNumber);
+			if (!isValidMobileNumber) alert("Invalid Mobile Number");
+		};
+		document.getElementById("password").onchange = function () {
+			event.preventDefault();
+			password = document.getElementById("password").value;
+			isValidPassword = validatePassword(password);
+			console.log("Password : ", password);
+			if (!isValidPassword) alert("Invalid Password");
+		};
+		document.getElementById("submit").onclick = function () {
+			event.preventDefault();
+			var isValidUser = login(mobileNumber, password);
+			if (isValidUser) alert("Login Successful");
+		}	
+	</script>
 </body>
 
 </html>
