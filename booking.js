@@ -14,6 +14,7 @@ var pickupHour;
 var totalFarePriceAtPeakTime;
 var isSeniorCitizen;
 var totalFareForSeniorCitizen = 0;
+var currentDate = "";
 
 document.getElementById("cabType").onchange = function () {
     cabType = getCabType();
@@ -41,7 +42,6 @@ var seniorCitizen = document.getElementById("seniorCitizen");
 seniorCitizen.onchange = () => {
     isSeniorCitizen = seniorCitizen.checked;
     calculateTotalFare();
-
 }
 
 function getAge(dateOfBirth) {
@@ -51,6 +51,7 @@ function getAge(dateOfBirth) {
     age = parseInt(currentYear) - parseInt(birthYear);
     return age;
 }
+
 
 function getDateOfBirth() {
     var dateOfBirth = document.getElementById("dateOfBirth").value;
@@ -86,10 +87,9 @@ function calculateTotalFare() {
 
     if (isSeniorCitizen && age > 65) {
         totalFareForSeniorCitizen = calculateTotalFareForSeniorCitizen(totalFarePriceWithGST);
-        console.log(totalFareForSeniorCitizen);
         document.getElementById("farePriceForSeniorCitizen").innerHTML = totalFareForSeniorCitizen;
-    }else{
-        document.getElementById("farePriceForSeniorCitizen").innerHTML = 0;				
+    } else {
+        document.getElementById("farePriceForSeniorCitizen").innerHTML = 0;
     }
 
 }
