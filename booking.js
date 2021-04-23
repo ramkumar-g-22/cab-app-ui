@@ -26,6 +26,10 @@ document.getElementById("kilometer").onchange = function () {
     calculateTotalFare();
 }
 
+var toDay = new Date()
+var toDayStr = toDay.toJSON().substring(0, 10);
+document.getElementById("dateOfBirth").setAttribute("max", toDayStr);
+
 document.getElementById("dateOfBirth").onchange = () => {
     dateOfBirth = getDateOfBirth();
     age = getAge(dateOfBirth);
@@ -57,6 +61,11 @@ function getDateOfBirth() {
     var dateOfBirth = document.getElementById("dateOfBirth").value;
     return dateOfBirth;
 }
+
+toDay.setDate(toDay.getDate() + 6);
+var maxBookingDate = toDay.toJSON().substring(0, 10);
+document.getElementById("journeyDate").setAttribute("max", maxBookingDate);
+document.getElementById("journeyDate").setAttribute("min", toDayStr);
 
 function getJourneyDate() {
     var journeyDate = document.getElementById("journeyDate").value;
