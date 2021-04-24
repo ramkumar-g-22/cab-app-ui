@@ -2,10 +2,12 @@ function validateMobileNumber(mobileNumber) {
     var validMobileNumber = false;
     var mobileNumberLength = mobileNumber.trim().length;
     var numberOfDigitsForMobileNumber = 10;
-    if (mobileNumberLength == numberOfDigitsForMobileNumber) {
-        validMobileNumber = true;
-    }else{
-        validMobileNumber = false;        
+    try {
+        if(isNaN(mobileNumber)) throw false;
+        if (mobileNumberLength != numberOfDigitsForMobileNumber) throw false;
+        if(mobileNumber.includes("-")) throw false;
+    } catch (error) {
+        validateMobileNumber = error;
     }
     return validMobileNumber;
 }
